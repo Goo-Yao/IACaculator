@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.activity.PlayFairActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <MaterialEditText
+        android:id="@+id/et_clearText"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:hint="明文"
+        app:backgroundColor="@color/colorPrimary"
+        app:floatingLabel="true"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <MaterialEditText
+        android:id="@+id/et_key"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:hint="密钥"
+        app:backgroundColor="@color/colorPrimary"
+        app:floatingLabel="true"
+        app:layout_constraintLeft_toLeftOf="@+id/et_clearText"
+        app:layout_constraintTop_toBottomOf="@+id/et_clearText" />
+
+    <MaterialEditText
+        android:id="@+id/et_sgin"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:hint="标识字(取首字母)"
+        app:backgroundColor="@color/colorPrimary"
+        app:floatingLabel="true"
+        app:layout_constraintLeft_toRightOf="@+id/et_clearText"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_clearText" />
+
+    <TextView
+        android:id="@+id/tv_run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_btn_light_selector"
+        android:padding="10dp"
+        android:text="演示"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_l"
+        app:layout_constraintBottom_toBottomOf="@+id/et_key"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintLeft_toLeftOf="@+id/et_sgin"
+        app:layout_constraintRight_toRightOf="@+id/et_sgin"
+        app:layout_constraintTop_toTopOf="@+id/et_key" />
+
+    <TextView
+        android:id="@+id/tv_clean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn_light_selector"
+        android:padding="10dp"
+        android:text="清空"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_l"
+        app:layout_constraintBottom_toBottomOf="@+id/et_key"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintLeft_toLeftOf="@+id/et_sgin"
+        app:layout_constraintRight_toRightOf="@+id/et_sgin"
+        app:layout_constraintTop_toTopOf="@+id/et_key" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/dividerColor"
+        app:layout_constraintLeft_toLeftOf="@+id/et_key"
+        app:layout_constraintRight_toRightOf="@+id/et_sgin"
+        app:layout_constraintTop_toBottomOf="@+id/et_key" />
+
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/textPrimaryColor"
+        android:textSize="@dimen/text_size_l"
+        app:layout_constraintLeft_toLeftOf="@+id/view"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        tools:text="result" />
+
+</android.support.constraint.ConstraintLayout>
+
