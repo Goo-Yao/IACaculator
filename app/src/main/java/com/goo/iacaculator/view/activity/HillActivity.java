@@ -33,7 +33,7 @@ public class HillActivity extends BaseSwipeBackActivity<HillVInterface, HillPres
     @Override
     protected void initView() {
         findAllViewById();
-        showToolbarAndShowNavigation("H算法演示");
+        showToolbarAndShowNavigation("Hill算法演示");
         mTvRun.setOnClickListener(this);
         mTvClean.setOnClickListener(this);
     }
