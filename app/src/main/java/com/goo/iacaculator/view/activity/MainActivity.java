@@ -108,6 +108,8 @@ public class MainActivity extends BaseActivity<MainVInterface, MainPresenter> im
             startActivityWithAnim(new Intent(MainActivity.this, PlayFairActivity.class));
         } else if (arithmeticName.equals("Hill")) {
             startActivityWithAnim(new Intent(MainActivity.this, HillActivity.class));
+        } else if (arithmeticName.equals("RSA")) {
+            startActivityWithAnim(new Intent(MainActivity.this, RSAActivity.class));
         } else {
             ToastUtil.showToast(this, "尚未实现,敬请期待");
         }

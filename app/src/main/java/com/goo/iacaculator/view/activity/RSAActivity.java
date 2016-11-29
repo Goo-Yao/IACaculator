@@ -3,26 +3,26 @@ package com.goo.iacaculator.view.activity;
 import android.view.View;
 import android.widget.MaterialEditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.goo.iacaculator.R;
 import com.goo.iacaculator.base.BaseSwipeBackActivity;
-import com.goo.iacaculator.presenter.PlayFairPresenter;
-import com.goo.iacaculator.view.vinterface.PlayFairVInterface;
+import com.goo.iacaculator.presenter.RSAPresenter;
+import com.goo.iacaculator.view.vinterface.RSAVInterface;
 
-public class PlayFairActivity extends BaseSwipeBackActivity<PlayFairVInterface, PlayFairPresenter> implements PlayFairVInterface, View.OnClickListener {
+public class RSAActivity extends BaseSwipeBackActivity<RSAVInterface, RSAPresenter> implements RSAVInterface, View.OnClickListener {
 
-    private MaterialEditText mEtClearText, mEtKey, mEtSgin;
+    private MaterialEditText mEtClearText, mEtPublicText, mEtPrime1, mEtPrime2;
     private TextView mTvRun, mTvClean, mTvResult;
 
-
     @Override
-    protected PlayFairPresenter createPresenter() {
-        return new PlayFairPresenter(this);
+    protected RSAPresenter createPresenter() {
+        return new RSAPresenter(this);
     }
 
     @Override
     protected int setContentViewById() {
-        return R.layout.activity_play_fair;
+        return R.layout.activity_rsa;
     }
 
     @Override
@@ -33,33 +33,37 @@ public class PlayFairActivity extends BaseSwipeBackActivity<PlayFairVInterface, 
     @Override
     protected void initView() {
         findAllViewById();
-        showToolbarAndShowNavigation("PlayFair算法演示");
+        showToolbarAndShowNavigation("RSA加密算法演示");
         setAllListener();
+        Toast.makeText(this, "暂时仅支持小数据演示", Toast.LENGTH_SHORT).show();
     }
 
     private void setAllListener() {
-        mTvRun.setOnClickListener(this);
         mTvClean.setOnClickListener(this);
+        mTvRun.setOnClickListener(this);
     }
 
     @Override
     protected void findAllViewById() {
         mEtClearText = $(R.id.et_clear_text);
-        mEtKey = $(R.id.et_key);
-        mEtSgin = $(R.id.et_sgin);
+        mEtPrime1 = $(R.id.et_prime_1);
+        mEtPrime2 = $(R.id.et_prime2);
+        mEtPublicText = $(R.id.et_public_key);
         mTvClean = $(R.id.tv_clean);
-        mTvRun = $(R.id.tv_run);
         mTvResult = $(R.id.tv_result);
+        mTvRun = $(R.id.tv_run);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_run:
-                mPresenter.runPlayFair(this, mEtClearText.getText().toString(), mEtKey.getText().toString(), mEtSgin.getText().toString());
-                break;
             case R.id.tv_clean:
                 cleanData();
+                break;
+            case R.id.tv_run:
+                mPresenter.runRSA(this, mEtPrime1.getText().toString(), mEtPrime2.getText().toString(), mEtPublicText.getText().toString(), mEtClearText.getText().toString());
+                break;
+            default:
                 break;
         }
 
@@ -69,9 +73,10 @@ public class PlayFairActivity extends BaseSwipeBackActivity<PlayFairVInterface, 
      * 清空数据
      */
     private void cleanData() {
+        mEtPublicText.setText("");
+        mEtPrime2.setText("");
+        mEtPrime1.setText("");
         mEtClearText.setText("");
-        mEtSgin.setText("");
-        mEtKey.setText("");
         mTvResult.setText("");
     }
 

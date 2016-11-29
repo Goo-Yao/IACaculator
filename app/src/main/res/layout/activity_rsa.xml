@@ -13,20 +13,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <MaterialEditText
-        android:id="@+id/et_clear_text"
+        android:id="@+id/et_prime_1"
         android:layout_width="160dp"
         android:layout_height="70dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        android:hint="明文"
+        android:digits="123456789"
+        android:hint="素数A"
+        android:inputType="number"
+        android:maxLength="2"
         app:backgroundColor="@color/colorPrimary"
         app:floatingLabel="true"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,46 +37,66 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <MaterialEditText
-        android:id="@+id/et_key"
+        android:id="@+id/et_public_key"
         android:layout_width="160dp"
         android:layout_height="70dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        android:hint="密钥"
+        android:digits="123456789"
+        android:hint="公钥"
+        android:inputType="number"
+        android:maxLength="2"
         app:backgroundColor="@color/colorPrimary"
         app:floatingLabel="true"
-        app:layout_constraintLeft_toLeftOf="@+id/et_clear_text"
-        app:layout_constraintTop_toBottomOf="@+id/et_clear_text" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_prime_1" />
 
     <MaterialEditText
-        android:id="@+id/et_sgin"
+        android:id="@+id/et_clear_text"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:digits="123456789"
+        android:hint="明文"
+        android:inputType="number"
+        android:maxLength="2"
+        app:backgroundColor="@color/colorPrimary"
+        app:floatingLabel="true"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/et_public_key"
+        app:layout_constraintRight_toRightOf="@+id/et_prime2"
+        app:layout_constraintTop_toBottomOf="@+id/et_prime2" />
+
+    <MaterialEditText
+        android:id="@+id/et_prime2"
         android:layout_width="160dp"
         android:layout_height="70dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        android:hint="标识字(取首字母)"
+        android:digits="123456789"
+        android:hint="素数B"
+        android:inputType="number"
+        android:maxLength="2"
         app:backgroundColor="@color/colorPrimary"
         app:floatingLabel="true"
-        app:layout_constraintLeft_toRightOf="@+id/et_clear_text"
+        app:layout_constraintLeft_toRightOf="@+id/et_prime_1"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_clear_text" />
+        app:layout_constraintTop_toTopOf="@+id/et_prime_1" />
 
     <TextView
         android:id="@+id/tv_run"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_btn_light_selector"
         android:padding="10dp"
         android:text="演示"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_l"
-        app:layout_constraintBottom_toBottomOf="@+id/et_key"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintLeft_toLeftOf="@+id/et_sgin"
-        app:layout_constraintRight_toRightOf="@+id/et_sgin"
-        app:layout_constraintTop_toTopOf="@+id/et_key" />
+        app:layout_constraintRight_toLeftOf="@+id/tv_clean"
+        app:layout_constraintTop_toBottomOf="@+id/et_public_key" />
 
     <TextView
         android:id="@+id/tv_clean"
@@ -85,11 +107,10 @@
         android:text="清空"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_l"
-        app:layout_constraintBottom_toBottomOf="@+id/et_key"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintLeft_toLeftOf="@+id/et_sgin"
-        app:layout_constraintRight_toRightOf="@+id/et_sgin"
-        app:layout_constraintTop_toTopOf="@+id/et_key" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_run"
+        app:layout_constraintRight_toRightOf="@+id/et_prime2"
+        app:layout_constraintTop_toTopOf="@+id/tv_run"
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/view"
@@ -97,9 +118,10 @@
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
         android:background="@color/dividerColor"
-        app:layout_constraintLeft_toLeftOf="@+id/et_key"
-        app:layout_constraintRight_toRightOf="@+id/et_sgin"
-        app:layout_constraintTop_toBottomOf="@+id/et_key" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/et_public_key"
+        app:layout_constraintRight_toRightOf="@+id/et_prime2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_run" />
 
 
     <TextView

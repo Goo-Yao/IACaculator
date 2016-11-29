@@ -40,7 +40,7 @@ public class HillActivity extends BaseSwipeBackActivity<HillVInterface, HillPres
 
     @Override
     protected void findAllViewById() {
-        mEtClearText = $(R.id.et_clearText);
+        mEtClearText = $(R.id.et_clear_text);
         mTvClean = $(R.id.tv_clean);
         mTvRun = $(R.id.tv_run);
         mTvResult = $(R.id.tv_result);

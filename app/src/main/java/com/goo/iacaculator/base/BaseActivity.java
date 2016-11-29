@@ -19,12 +19,11 @@ import com.goo.iacaculator.utils.ToastUtil;
  * Created by Goo on 2016-8-28.
  */
 public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCompatActivity {
-    protected Toolbar toolbar;
+    protected Toolbar mToolbar;
     protected P mPresenter;
     private ProgressDialog mProgressDialog;
     protected boolean isDoubleBackDestory = false;
     private long mExitTime = 0;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +34,7 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
         initAttributes();
         initView();
     }
+
 
     //获取Presenter;
     protected abstract P createPresenter();
@@ -51,14 +51,14 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * @param title 直接显示返回箭头的toolbar
      */
     public void showToolbarAndShowNavigation(String title) {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setToolbarTitle(title);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            toolbar.getLayoutParams().height = DimenUtils.getAppBarHeight(this);
-            toolbar.setPadding(toolbar.getPaddingLeft(),
+            mToolbar.getLayoutParams().height = DimenUtils.getAppBarHeight(this);
+            mToolbar.setPadding(mToolbar.getPaddingLeft(),
                     DimenUtils.getStatusBarHeight(this),
-                    toolbar.getPaddingRight(),
-                    toolbar.getPaddingBottom());
+                    mToolbar.getPaddingRight(),
+                    mToolbar.getPaddingBottom());
         }
         showToolBar();
         showOrHideToolBarNavigation(true);
@@ -71,9 +71,9 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * @param title
      */
     private void setToolbarTitle(String title) {
-        if (toolbar != null) {
-            toolbar.setTitle(title);
-            toolbar.setTitleTextColor(0xFFFFFFFF);
+        if (mToolbar != null) {
+            mToolbar.setTitle(title);
+            mToolbar.setTitleTextColor(0xFFFFFFFF);
         }
     }
 
@@ -81,8 +81,8 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * 显示ToolBar
      */
     private void showToolBar() {
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
         }
         if (getSupportActionBar() != null) {
             getSupportActionBar().show();
@@ -100,8 +100,8 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
-            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     finishActivityWithAnim();
